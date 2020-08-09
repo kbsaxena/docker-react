@@ -6,4 +6,4 @@ before_install:
   - docker build -t kulbhushansaxena/docker-react -f Dockerfile.dev .     #build the image
 
 script:
-  - docker run kulbhushansaxena/docker-react npm run test -- --coverage   #Scripts which travs checks is sccessfull or not
+  - docker run -e CI=true kulbhushansaxena/docker-react npm run test -- --coverage   #Scripts which travs checks is sccessfull or not
