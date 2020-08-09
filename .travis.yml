@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run -e CI=true kulbhushansaxena/docker-react npm run test -- --coverage   #Scripts which travs checks is sccessfull or not
+
+deploy:      #travis ci to deploy to aws
+  provider: elasticbeanstalk
+  region: "ap-southeast-2"
+  app: "docker"
+  env: "Docker-env"
+  bucket_name: "elasticbeanstalk-ap-southeast-2-581695759997"     #this is the bucket that gets auto created when u create elasticbean stalk
+  bucket_path: "docker"    #same as app name
+  on:
+    branch: master         #only deploy when changes are merged to master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+
